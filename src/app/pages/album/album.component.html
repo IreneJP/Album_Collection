@@ -1,0 +1,11 @@
+<app-nav-bar></app-nav-bar>
+<h1>Albums</h1>
+
+<div class="allAlbum">
+    <div class="album" *ngFor="let album of allAlbums">
+        <div>
+            <p>{{album.title}}</p>
+        </div>
+        <img src="{{album.coverUrl}}" alt="{{album.title}}">
+    </div>
+</div>

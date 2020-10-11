@@ -1,0 +1,52 @@
+<app-nav-bar></app-nav-bar>
+
+<h1>Artists</h1>
+
+<div class="allArtist">
+    <div class="artist" *ngFor="let artist of allArtists">
+        <div>
+            <p>{{artist.name}}</p>
+        </div>
+        <img src="{{artist.photoUrl}}" alt="{{artist.name}}" (click)="getArtist(artist._id)" data-toggle="modal" data-target="#modelId">
+    </div>
+</div>
+<!--
+<div class="allInfo" *ngIf="artist != null">
+    <div class="info">
+        <h2>{{artist.name}}</h2>
+        <ul>
+            <li>Artist id: {{artist._id}}</li>
+            <li>Birthdate: {{artist.birthdate | date: 'longDate'}} </li>
+            <li *ngIf="artist.deathDate != null">Deathdate: {{artist.deathDate | date: 'longDate'}}</li>
+        </ul>
+    </div>
+   <div>
+    <img src="{{artist.photoUrl}}" alt="{{artist.name}}">
+   </div>
+</div>-->
+
+<div class="modal" tabindex="-1" *ngIf="artist != null" id="modelId">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{artist.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>Artist id: {{artist._id}}</li>
+                <li>Birthdate: {{artist.birthdate | date: 'longDate'}} </li>
+                <li *ngIf="artist.deathDate != null">Deathdate: {{artist.deathDate | date: 'longDate'}}</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
