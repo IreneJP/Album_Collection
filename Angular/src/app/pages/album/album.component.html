@@ -9,7 +9,16 @@
         </div>
         <img src="{{album.coverUrl}}" data-toggle="modal" [attr.data-target]="'#modal_'+index">
     </div>
+    <div class="album"  routerLink= "/newAlbum">
+      <div>
+          <p>Add new album</p>
+      </div>
+      <img src="https://image.freepik.com/iconos-gratis/ventaja_318-1603.jpg" class="addNew"  >
+  </div>
 </div>
+
+  
+
 
 <div  *ngFor="let album of allAlbums; let index=index">
   <div class="modal fade"  [attr.id]="'modal_'+index" role="dialog">

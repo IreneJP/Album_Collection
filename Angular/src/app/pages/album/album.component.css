@@ -13,6 +13,7 @@
 
 .album img{
     width: 100%;
+    cursor: pointer;
 }
 
 .album p{
@@ -28,4 +29,8 @@
 
 .modal ul{
     padding-left: 25%;
+}
+
+.addNew {
+    border: solid 1px;
 }

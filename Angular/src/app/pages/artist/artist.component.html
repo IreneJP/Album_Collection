@@ -9,6 +9,12 @@
         </div>
         <img src="{{artist.photoUrl}}" data-toggle="modal" [attr.data-target]="'#modal_'+index">
     </div>
+    <div class="artist">
+      <div>
+          <p>Add new artist</p>
+      </div>
+      <img src="https://image.freepik.com/iconos-gratis/ventaja_318-1603.jpg" routerLink= "/newArtist" class="addNew" >
+  </div>
 </div>
 
 <div  *ngFor="let artist of allArtists; let index=index">
@@ -25,7 +31,7 @@
           <ul>
               <li>Artist id: {{artist._id}}</li>
               <li>Birthdate: {{artist.birthdate | date: 'longDate'}} </li>
-              <li *ngIf="artist.deathDate != null">Deathdate: {{artist.deathDate | date: 'longDate'}}</li>
+              <li *ngIf="artist.deathDate != null">Death date: {{artist.deathDate | date: 'longDate'}}</li>
           </ul>
         </div>
         <div class="modal-footer">
@@ -87,11 +93,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>deathDate</label>
-                        <input  type="text"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && deathDate.invalid}" required ><br>
-                        <div  class="invalid-feedback" *ngIf= "artistForm.submitted && deathDate.invalid" >
-                        <p *ngIf="deathDate.errors.required">El año es obligatorio</p>
-                        </div>  
+                        <label>Death date</label>
+                        <input  type="text"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" >
                     </div>
                 
                     <button type="submit" class="btn btn-success">Update</button>

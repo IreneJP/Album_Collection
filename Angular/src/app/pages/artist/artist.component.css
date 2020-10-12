@@ -13,6 +13,7 @@
 
 .artist img{
     width: 100%;
+    cursor: pointer;
 }
 
 .artist p{
@@ -28,4 +29,10 @@
 
 .modal ul{
     padding-left: 25%;
+}
+
+.addNew {
+    padding-bottom: 25%;
+    padding-top: 25%;
+    border: solid 1px;
 }
