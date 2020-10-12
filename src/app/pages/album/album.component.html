@@ -1,11 +1,128 @@
 <app-nav-bar></app-nav-bar>
+
 <h1>Albums</h1>
 
 <div class="allAlbum">
-    <div class="album" *ngFor="let album of allAlbums">
+    <div class="album" *ngFor="let album of allAlbums; let index=index">
         <div>
             <p>{{album.title}}</p>
         </div>
-        <img src="{{album.coverUrl}}" alt="{{album.title}}">
+        <img src="{{album.coverUrl}}" data-toggle="modal" [attr.data-target]="'#modal_'+index">
     </div>
 </div>
+
+<div  *ngFor="let album of allAlbums; let index=index">
+  <div class="modal fade"  [attr.id]="'modal_'+index" role="dialog">
+    <div class="modal-dialog"> 
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{album.title}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <img class="img-fluid" src="{{album.coverUrl}}" alt="{{album.title}}">
+          </div>
+          <ul>
+            <li>Album id: {{album._id}} </li>
+            <li>Artist id: {{album.artistId}}</li>
+            <li>Genre: {{album.genre}}</li>
+            <li>Year: {{album.year}}</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+            <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" [attr.data-target]="'#update'+index">Update information</button>
+                <button type="button" class="btn btn-danger" (click) = "deleteAlbum(album._id)">Delete album</button>
+            </div>
+             
+        </div>
+      </div>        
+    </div>
+  </div>    
+</div>
+
+
+  <!--update-->
+<div class="container"  *ngFor="let album of allAlbums; let index=index">
+    <div class="modal fade" [attr.id]="'update'+index" role="dialog"  >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update album information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+          </div>
+            <div class="modal-body">
+
+                <form #discForm2="ngForm" (ngSubmit)="onSubmit(discForm2)" >
+                    <div class="form-group">
+                        <label>Album id</label>
+                        <input   type="text "class="form-control" name ="_id" [(ngModel)]= "album._id" #_id="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && _id.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && _id.invalid" >
+                            <p *ngIf="_id.errors.required">Id required</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                    <label>Album title</label>
+                    <input  type="text "class="form-control" name ="title" [(ngModel)]= "album.title" #title="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && title.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && title.invalid" >
+                            <p *ngIf="title.errors.required">Title required</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                    <label>Artist Id</label>
+                    <input  type="text"class="form-control" name ="artistId" [(ngModel)]= "album.artistId" #artistId="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && artistId.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && artistId.invalid" >
+                        <p *ngIf="artistId.errors.required">El intérprete es obligatorio</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cover url</label>
+                        <input  type="text" class="form-control" name ="coverUrl" [(ngModel)]= "album.coverUrl" #coverUrl="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && coverUrl.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && coverUrl.invalid" >
+                            <p *ngIf="coverUrl.errors.required">El intérprete es obligatorio</p>
+                        </div>  
+                    </div>
+                
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input  type="text"class="form-control" name ="year" [(ngModel)]= "album.year" #year="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && year.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && year.invalid" >
+                        <p *ngIf="year.errors.required">El año es obligatorio</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <input  type="text"class="form-control" name ="genre" [(ngModel)]= "album.genre" #genre="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && genre.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && genre.invalid" >
+                        <p *ngIf="genre.errors.required">El año es obligatorio</p>
+                        </div>  
+                    </div>
+                
+                    <button type="submit" class="btn btn-success">Update</button>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1"  id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+               Done
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 

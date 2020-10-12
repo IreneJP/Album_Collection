@@ -20,3 +20,12 @@
     font-size: 1vw;
     margin: 0;
 }
+
+.modal img{
+    width: 50%;
+    margin: auto auto 5% auto
+}
+
+.modal ul{
+    padding-left: 25%;
+}

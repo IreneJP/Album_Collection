@@ -2,21 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from 'src/app/models/album';
 import { MongoService } from 'src/app/shared/mongo.service';
-declare var $ : any;
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+  selector: 'app-new-album',
+  templateUrl: './new-album.component.html',
+  styleUrls: ['./new-album.component.css']
 })
-export class AlbumComponent implements OnInit {
-
-  public allAlbums: Album[];
-  public album: Album;
-  public album2: Album;
+export class NewAlbumComponent implements OnInit {
   public formAlbum: FormGroup;
-  submitted = false;
-
+  public album:Album
   constructor(private mongoService: MongoService, private formBuilder: FormBuilder) {
 
     this.formAlbum = this.formBuilder.group({
@@ -26,41 +20,17 @@ export class AlbumComponent implements OnInit {
       year:  new FormControl('', Validators.required),
       genre: new FormControl('', Validators.required)
     })
-
-   }
-
-  getAlbums(){
-    this.mongoService.getAllAlbums().subscribe((data:Album[])=>{
-      this.allAlbums = data
-      console.log(data)
-    })
   }
 
-  getAlbum(albumId){
-    this.mongoService.getOneAlbum(albumId).subscribe((data:Album)=>{
-     this.album = data
-     console.log(this.album)
-    })
+  addNewAlbum(){
+    let newAlbum = new Album (this.formAlbum.value.title, this.formAlbum.value.artistId, this.formAlbum.value.coverUrl,  this.formAlbum.value.year, this.formAlbum.value.genre)
+   console.log(newAlbum)
+    this.mongoService.addOneAlbum(newAlbum).subscribe((data:Album) => {
+          console.log(data)
+    })    
+    this.formAlbum.reset()
   }
   
-  onSubmit(form){
-    this.album = form.value       
-    this.mongoService.modifyAlbum(form.value._id, this.album).subscribe((data) => {     
-      console.log(data)
-      }) 
-    this.submitted = true;    
-    $('#myModal').modal('show')
-    $('.alert').alert('show')
-    
-  }
-
-  deleteAlbum(albumId:string){
-    this.mongoService.removeAlbum(albumId).subscribe((data) => {
-      console.log("desdeTS",data)
-   })    
- }
-  
-
   get title(){
     return this.formAlbum.get('title')
   }
@@ -78,7 +48,6 @@ export class AlbumComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAlbums()
   }
 
 }

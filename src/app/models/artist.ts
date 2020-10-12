@@ -1,4 +1,5 @@
 export class Artist {
+    public _id: string;
     public name: string;    
     public photoUrl: string;
     public birthdate: Date;

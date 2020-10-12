@@ -11,6 +11,9 @@ import { ArtistComponent } from './pages/artist/artist.component';
 
 import { MongoService } from './shared/mongo.service';
 import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewAlbumComponent } from './pages/new-album/new-album.component';
+import { NewArtistComponent } from './pages/new-artist/new-artist.component';
 
 
 @NgModule({
@@ -19,12 +22,16 @@ import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
     ArtistComponent,
     SearcherComponent,
     AlbumComponent,
-    NavBarComponent
+    NavBarComponent,
+    NewAlbumComponent,
+    NewArtistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     MongoService

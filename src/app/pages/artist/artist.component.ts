@@ -1,6 +1,7 @@
 import { Artist } from './../../models/artist';
 import { MongoService } from './../../shared/mongo.service';
 import { Component, OnInit } from '@angular/core';
+declare var $ : any;
 
 @Component({
   selector: 'app-artist',
@@ -21,16 +22,20 @@ export class ArtistComponent implements OnInit {
   }
 
   getArtist(artistId){
-    this.mongoService.getOneArtist(artistId).subscribe((data:Artist)=>{
+    this.mongoService.getOneArtist(artistId).subscribe((data:Artist)=>{     
      this.artist = data
-     console.log(this.artist)
-    })
+     console.log(this.artist) 
+    })    
   }
 
-
+  showmodal(){
+    $('#modalId').modal('show');
+    this.getArtist(this.artist._id)
+  }
   
   ngOnInit(): void {
     this.getArtists()
+    
   }
 
 }
