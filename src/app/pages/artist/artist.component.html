@@ -30,14 +30,90 @@
         </div>
         <div class="modal-footer">
             <div>
-                <button type="button" class="btn btn-info">Upload information</button>
-                <button type="button" class="btn btn-danger">Delete artist</button>
-            </div>
+              <button type="button" class="btn btn-info" data-toggle="modal" [attr.data-target]="'#update'+index">Update information</button>
+              <button type="button" class="btn btn-danger" (click) = "deleteArtist(artist._id)">Delete artist</button>
+          </div>
              
         </div>
       </div>        
     </div>
   </div>    
 </div>
+
+
+  <!--update-->
+  <div class="container"  *ngFor="let artist of allArtists; let index=index">
+    <div class="modal fade" [attr.id]="'update'+index" role="dialog"  >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update artist information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+          </div>
+            <div class="modal-body">
+
+                <form #artistForm="ngForm" (ngSubmit)="onSubmit(artistForm)" >
+                    <div class="form-group">
+                        <label>Artist id</label>
+                        <input   type="text "class="form-control" name ="_id" [(ngModel)]= "artist._id" #_id="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && _id.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "artistForm.submitted && _id.invalid" >
+                            <p *ngIf="_id.errors.required">Id required</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                    <label>Artist name</label>
+                    <input  type="text "class="form-control" name ="name" [(ngModel)]= "artist.name" #name="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && name.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "artistForm.submitted && name.invalid" >
+                            <p *ngIf="name.errors.required">Name required</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cover url</label>
+                        <input  type="text" class="form-control" name ="photoUrl" [(ngModel)]= "artist.photoUrl" #photoUrl="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && photoUrl.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "artistForm.submitted && photoUrl.invalid" >
+                            <p *ngIf="photoUrl.errors.required">Cover url required</p>
+                        </div>  
+                    </div>
+                
+                    <div class="form-group">
+                        <label>Birthdate</label>
+                        <input  type="text"class="form-control" name ="birthdate" [(ngModel)]= "artist.birthdate" #birthdate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && birthdate.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "artistForm.submitted && birthdate.invalid" >
+                        <p *ngIf="birthdate.errors.required">Birthdate required</p>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                        <label>deathDate</label>
+                        <input  type="text"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && deathDate.invalid}" required ><br>
+                        <div  class="invalid-feedback" *ngIf= "artistForm.submitted && deathDate.invalid" >
+                        <p *ngIf="deathDate.errors.required">El año es obligatorio</p>
+                        </div>  
+                    </div>
+                
+                    <button type="submit" class="btn btn-success">Update</button>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1"  id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+               Done
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 

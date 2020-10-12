@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from 'src/app/models/album';
 import { MongoService } from 'src/app/shared/mongo.service';
+declare var $ : any;
 
 @Component({
   selector: 'app-new-album',
@@ -29,6 +30,7 @@ export class NewAlbumComponent implements OnInit {
           console.log(data)
     })    
     this.formAlbum.reset()
+    $('#added').modal('show')  
   }
   
   get title(){
