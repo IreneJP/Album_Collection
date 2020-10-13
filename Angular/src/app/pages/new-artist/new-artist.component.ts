@@ -25,10 +25,8 @@ export class NewArtistComponent implements OnInit {
 
   addNewArtist(){
     let newArtist = new Artist (this.formArtist.value.name, this.formArtist.value.photoUrl, this.formArtist.value.birthdate,  this.formArtist.value.deathDate)
-   console.log(newArtist)
-    this.mongoService.addOneArtist(newArtist).subscribe((data:Artist) => {
-          console.log(data)
-    })    
+   
+    this.mongoService.addOneArtist(newArtist).subscribe((data:Artist) => {})    
     this.formArtist.reset()
     $('#added').modal('show')  
   }

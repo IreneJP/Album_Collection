@@ -1,46 +1,57 @@
 <app-nav-bar></app-nav-bar>
 
-<div>
+<body>
     <div>
-        <h1>Search an artist or an album</h1>
-    </div>
-    
-        <input class="form-control mr-sm-2" placeholder="Introduce ID" aria-label="Search" #artistId #albumId>
-    <div class="search1">
-        <button  class="btn btn-outline-success my-2 my-sm-0" type="button" (click) = "getArtist(artistId.value)">Artist</button>
-        <button  class="btn btn-outline-success my-2 my-sm-0" type="button" (click) = "getAlbum(albumId.value)">Album</button>
+        <h1>Search artist albums</h1>
+        <form [formGroup] = "formAlbum"  (ngSubmit)="artistAlbums(formAlbum.value)">
+            <div class="row form-group">
+                <div class="col-12 mt-2">
+                    <label for="artistId">Artist</label>
+                    <ng-select  class ="dropdown" [items]="artistsNames" bindLabel="name" bindValue="_id" formControlName="artistId" placeholder="Select artist name">                    
+                    </ng-select>
+                </div>
+            </div>
+            <div>
+                <div class="button">
+                    <button class="btn btn-outline-info" type="submit" >Search</button>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <div class="allInfo" *ngIf="artist != null">
+    <div class="allInfoArtist" *ngIf="artist != null">
         <div class="info">
             <h2>{{artist.name}}</h2>
             <ul>
                 <li>Artist id: {{artist._id}}</li>
-                <li>Birthdate: {{artist.birthdate | date: 'longDate'}} </li>
-                <li *ngIf="artist.deathDate != null">Deathdate: {{artist.deathDate | date: 'longDate'}}</li>
+                <li>Birth date: {{artist.birthdate | date: 'longDate'}} </li>
+                <li *ngIf="artist.deathDate != null">Death date: {{artist.deathDate | date: 'longDate'}}</li>
             </ul>
         </div>
-       <div>
+    <div>
         <img src="{{artist.photoUrl}}" alt="{{artist.name}}">
-       </div>
+    </div>
     </div>
 
-    <div class="allInfo" *ngIf="album != null">
-        <div class="info">
-            <h2>{{album.title}}</h2>
-            <ul>
-                <li>Album id: {{album._id}} </li>
-                <li>Artist id: {{album.artistId}}</li>
-                <li>Genre: {{album.genre}}</li>
-                <li>Year: {{album.year}}</li>
-            </ul>
-        </div>
-        <div>
-        <img src="{{album.coverUrl}}" alt="{{album.title}}">
+    <div *ngIf="albumsArtist != null">
+        <h3>Albums published by the artist</h3>
+        <div class="allInfo"  *ngFor="let album of albumsArtist">
+            <div class="info">
+                <h2>{{album.title}}</h2>
+                <ul>
+                    <li>Album id: {{album._id}} </li>
+                    <li>Artist id: {{album.artistId}}</li>
+                    <li>Genre: {{album.genre}}</li>
+                    <li>Year: {{album.year}}</li>
+                </ul>
+            </div>
+            <div>
+                <img src="{{album.coverUrl}}" alt="{{album.title}}">
+            </div>
+            <br>
+            <hr>
         </div>
     </div>
-</div>
+</body>
 
 
-
-    

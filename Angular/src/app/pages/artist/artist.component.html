@@ -29,7 +29,6 @@
               <img class="img-fluid" src="{{artist.photoUrl}}" alt="{{artist.name}}">
           </div>
           <ul>
-              <li>Artist id: {{artist._id}}</li>
               <li>Birthdate: {{artist.birthdate | date: 'longDate'}} </li>
               <li *ngIf="artist.deathDate != null">Death date: {{artist.deathDate | date: 'longDate'}}</li>
           </ul>
@@ -86,7 +85,7 @@
                 
                     <div class="form-group">
                         <label>Birthdate</label>
-                        <input  type="text"class="form-control" name ="birthdate" [(ngModel)]= "artist.birthdate" #birthdate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && birthdate.invalid}" required ><br>
+                        <input  type="date"class="form-control" name ="birthdate" [(ngModel)]= "artist.birthdate" #birthdate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && birthdate.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "artistForm.submitted && birthdate.invalid" >
                         <p *ngIf="birthdate.errors.required">Birthdate required</p>
                         </div>  
@@ -94,7 +93,7 @@
 
                     <div class="form-group">
                         <label>Death date</label>
-                        <input  type="text"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" >
+                        <input  type="date"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" >
                     </div>
                 
                     <button type="submit" class="btn btn-success">Update</button>

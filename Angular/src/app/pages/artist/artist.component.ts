@@ -18,24 +18,21 @@ export class ArtistComponent implements OnInit {
   getArtists(){
     this.mongoService.getAllArtists().subscribe((data:Artist[])=>{
       this.allArtists = data
-      console.log(data)
     })
   }
 
   getArtist(artistId){
     this.mongoService.getOneArtist(artistId).subscribe((data:Artist)=>{     
      this.artist = data
-     console.log(this.artist) 
     })    
   }
 
 
   onSubmit(form){
     this.artist = form.value       
-    this.mongoService.modifyArtist(form.value._id, this.artist).subscribe((data) => {     
-      console.log(data)
-      }) 
+    this.mongoService.modifyArtist(form.value._id, this.artist).subscribe((data) => {  }) 
     this.submitted = true;
+    location.reload();
   }
 
   deleteAlbum(artistId:string){

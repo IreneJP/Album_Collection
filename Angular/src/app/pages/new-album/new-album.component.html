@@ -1,5 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <h1>Add new album</h1>
+<div>
+
+
     <form [formGroup] = "formAlbum" (ngSubmit)="addNewAlbum()">
             <div class="row form-group">
                 <div class="col-12 mt-2">
@@ -10,6 +13,7 @@
                     <span *ngIf="title.errors?.required">Required</span>
                 </div>
             </div>
+            <!--
             <div class="row form-group">
                 <div class="col-12 mt-2">
                     <label for="artistId">Artist Id</label>
@@ -18,11 +22,18 @@
                 <div class="invalid-feedback">
                     <span *ngIf="artistId.errors?.required">Required</span>
                 </div>
+            </div>-->
+            <div class="row form-group">
+                <div class="col-12 mt-2">
+                    <label for="artistId">Artist</label>
+                    <ng-select  class ="dropdown" [items]="artistsNames" bindLabel="name" bindValue="_id" formControlName="artistId">                    
+                    </ng-select>
+                </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 mt-2">
                     <label for="coverUrl">Cover Url</label>
-                    <input type="text" id="coverUrl" class="form-control" formControlName="coverUrl" [ngClass]="{'is-valid': coverUrl.dirty && !artistId.invalid, 'is-invalid': coverUrl.dirty && coverUrl.invalid}" placeholder="cover Url">
+                    <input type="text" id="coverUrl" class="form-control" formControlName="coverUrl" [ngClass]="{'is-valid': coverUrl.dirty && !coverUrl.invalid, 'is-invalid': coverUrl.dirty && coverUrl.invalid}" placeholder="cover Url">
                 </div>
                 <div class="invalid-feedback">
                     <span *ngIf="coverUrl.errors?.required">Required</span>
@@ -53,6 +64,7 @@
                 </div>
             </div>
     </form>
+</div>
 
     <div class="modal" tabindex="-1"  id="added">
         <div class="modal-dialog">
@@ -66,5 +78,12 @@
           </div>
         </div>
       </div>
+
+
+    
+
+
+      
+
   
 

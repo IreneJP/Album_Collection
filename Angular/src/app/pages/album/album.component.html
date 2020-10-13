@@ -26,14 +26,11 @@
       <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">{{album.title}}</h4>
-        </div>
-        <div class="modal-body">
+        </div><div class="modal-body">
           <div class="row">
               <img class="img-fluid" src="{{album.coverUrl}}" alt="{{album.title}}">
           </div>
           <ul>
-            <li>Album id: {{album._id}} </li>
-            <li>Artist id: {{album.artistId}}</li>
             <li>Genre: {{album.genre}}</li>
             <li>Year: {{album.year}}</li>
           </ul>
@@ -68,7 +65,7 @@
                         <label>Album id</label>
                         <input   type="text "class="form-control" name ="_id" [(ngModel)]= "album._id" #_id="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && _id.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "discForm2.submitted && _id.invalid" >
-                            <p *ngIf="_id.errors.required">Id required</p>
+                            <p *ngIf="_id.errors.required">Required</p>
                         </div>  
                     </div>
 
@@ -76,23 +73,21 @@
                     <label>Album title</label>
                     <input  type="text "class="form-control" name ="title" [(ngModel)]= "album.title" #title="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && title.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "discForm2.submitted && title.invalid" >
-                            <p *ngIf="title.errors.required">Title required</p>
+                            <p *ngIf="title.errors.required">Required</p>
                         </div>  
                     </div>
 
                     <div class="form-group">
-                    <label>Artist Id</label>
-                    <input  type="text"class="form-control" name ="artistId" [(ngModel)]= "album.artistId" #artistId="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && artistId.invalid}" required ><br>
-                        <div  class="invalid-feedback" *ngIf= "discForm2.submitted && artistId.invalid" >
-                        <p *ngIf="artistId.errors.required">El intérprete es obligatorio</p>
-                        </div>  
+                          <label for="artistId">Artist</label>
+                          <ng-select  class ="dropdown" [items]="artistsNames" bindLabel="name" bindValue="_id"  name ="artistId" [(ngModel)]= "album.artistId" #artistId="ngModel">                    
+                          </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label>Cover url</label>
                         <input  type="text" class="form-control" name ="coverUrl" [(ngModel)]= "album.coverUrl" #coverUrl="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && coverUrl.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "discForm2.submitted && coverUrl.invalid" >
-                            <p *ngIf="coverUrl.errors.required">El intérprete es obligatorio</p>
+                            <p *ngIf="coverUrl.errors.required">Required</p>
                         </div>  
                     </div>
                 
@@ -100,7 +95,7 @@
                         <label>Year</label>
                         <input  type="text"class="form-control" name ="year" [(ngModel)]= "album.year" #year="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && year.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "discForm2.submitted && year.invalid" >
-                        <p *ngIf="year.errors.required">El año es obligatorio</p>
+                        <p *ngIf="year.errors.required">Required</p>
                         </div>  
                     </div>
 
@@ -108,11 +103,11 @@
                         <label>Genre</label>
                         <input  type="text"class="form-control" name ="genre" [(ngModel)]= "album.genre" #genre="ngModel" [ngClass]= "{'is-invalid':discForm2.submitted && genre.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "discForm2.submitted && genre.invalid" >
-                        <p *ngIf="genre.errors.required">El año es obligatorio</p>
+                        <p *ngIf="genre.errors.required">Required</p>
                         </div>  
                     </div>
                 
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success" >Update</button>
                 </form>
             </div>
         </div>

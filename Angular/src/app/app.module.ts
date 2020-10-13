@@ -14,6 +14,7 @@ import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewAlbumComponent } from './pages/new-album/new-album.component';
 import { NewArtistComponent } from './pages/new-artist/new-artist.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { NewArtistComponent } from './pages/new-artist/new-artist.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [
     MongoService
