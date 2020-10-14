@@ -17,3 +17,29 @@ h1{
     color:rgba(233, 91, 91, 0.734);
     font-weight: bold;
 }
+
+#titles{
+    color: #fd6048;
+    font-family: 'Russo One', sans-serif;
+}
+
+h1, h2, h3, h4, li, label, button{
+    font-family: 'Russo One', sans-serif;
+}
+
+#active{
+    color: #fd6048;
+}
+
+#nonActive{
+    color:black ;
+}
+
+.nav-tabs{
+    margin: auto auto auto auto;
+    width: 70%;
+}
+
+hr{
+    width: 80%;
+}

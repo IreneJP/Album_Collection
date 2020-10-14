@@ -1,3 +1,17 @@
-.nav{
-    padding: 1% 2% 0 0;
+body{
+    padding: 0.5% 1.5% 0.5% 0;
+    background-color:#fd604891 ;
+    border: solid 0.5px #fd6048c4;   
+}
+
+a{
+    color: white
+}
+
+a:hover{
+    color:#FD6148
+}
+
+.dropdown-item{
+    color:#FD6148
 }

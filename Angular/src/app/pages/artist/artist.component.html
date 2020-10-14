@@ -5,13 +5,13 @@
 <div class="allArtist">
     <div class="artist" *ngFor="let artist of allArtists; let index=index">
         <div>
-            <p>{{artist.name}}</p>
+            <p id="titles">{{artist.name}}</p>
         </div>
         <img src="{{artist.photoUrl}}" data-toggle="modal" [attr.data-target]="'#modal_'+index">
     </div>
     <div class="artist">
       <div>
-          <p>Add new artist</p>
+          <p id="titles">Add new artist</p>
       </div>
       <img src="https://image.freepik.com/iconos-gratis/ventaja_318-1603.jpg" routerLink= "/newArtist" class="addNew" >
   </div>

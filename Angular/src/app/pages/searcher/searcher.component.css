@@ -6,10 +6,13 @@ form{
 }
 
 button{
-    border:solid 1px;
+    border:solid 1px #fd6048;
+    color: #fd6048;
 }
 button:hover{
     color: white;
+    background-color: #fd6048cd;
+    border:solid 1px #fd6048;
 }
 
 h2{
@@ -24,23 +27,26 @@ h3{
 
 .allInfo{
     display: grid;
-    grid-template-columns: 70% 30% ;
+    grid-template-columns: 30% 70% ;
     margin: 5% auto auto auto;
     width: 50%;
     border-radius: 2%;
     border: solid 0.5px rgb(151, 147, 147);
     padding: 2% 5% 1% 0 ;
     text-align: left;
+    border: solid 0.5px #fd6048c4;
     
 }
 
 .allInfoArtist{
+    background-color: #fd604891;
     display: grid;
     grid-template-columns: 70% 30% ;
     grid-gap: 6%;
     margin: 5% auto auto auto;
     width: 50%;
-    border: solid 0.5px  rgb(151, 147, 147);
+    border: solid 0.5px #fd6048c4;
+    color: white;
     border-radius: 2%;
     padding: 2% 5% 1% 0 ;
     text-align: left;
@@ -48,17 +54,20 @@ h3{
 
 .allInfoArtist img{
     width: 100%;
+    border: solid 0.5px  white;
 }
 
 .info{
     font-size: 1,2vw;
     align-items: center;
-    padding-left: 10%;
-   
+    padding-left: 10%;   
 }
 
 .allInfo img{
     width: 100%;
+    border-radius: 100%;
+    margin: 5% auto auto 20%;
+
 }
 
 body{

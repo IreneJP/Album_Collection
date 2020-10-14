@@ -43,8 +43,7 @@ export class SomeAlbumsComponent implements OnInit {
         this.artistsNames[i]
       }
     })
-  }   
-
+  }  
   
   addSomeAlbums(){
     let newAlbum = new Album (this.formAlbum.value.title, this.formAlbum.value.artistId, this.formAlbum.value.coverUrl,  this.formAlbum.value.year, this.formAlbum.value.genre)
