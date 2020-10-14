@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewAlbumComponent } from './pages/new-album/new-album.component';
 import { NewArtistComponent } from './pages/new-artist/new-artist.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SomeArtistsComponent } from './pages/some-artists/some-artists.component';
+import { SomeAlbumsComponent } from './pages/some-albums/some-albums.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AlbumComponent,
     NavBarComponent,
     NewAlbumComponent,
-    NewArtistComponent
+    NewArtistComponent,
+    SomeArtistsComponent,
+    SomeAlbumsComponent
   ],
   imports: [
     BrowserModule,

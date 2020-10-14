@@ -29,14 +29,14 @@
               <img class="img-fluid" src="{{artist.photoUrl}}" alt="{{artist.name}}">
           </div>
           <ul>
-              <li>Birthdate: {{artist.birthdate | date: 'longDate'}} </li>
+              <li>Birth date: {{artist.birthdate | date: 'longDate'}} </li>
               <li *ngIf="artist.deathDate != null">Death date: {{artist.deathDate | date: 'longDate'}}</li>
           </ul>
         </div>
         <div class="modal-footer">
             <div>
               <button type="button" class="btn btn-info" data-toggle="modal" [attr.data-target]="'#update'+index">Update information</button>
-              <button type="button" class="btn btn-danger" (click) = "deleteArtist(artist._id)">Delete artist</button>
+              <button type="button" class="btn btn-danger" (click) = "deleteArtist(artist._id)" data-dismiss="modal">Delete artist</button>
           </div>
              
         </div>
@@ -84,16 +84,16 @@
                     </div>
                 
                     <div class="form-group">
-                        <label>Birthdate</label>
-                        <input  type="date"class="form-control" name ="birthdate" [(ngModel)]= "artist.birthdate" #birthdate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && birthdate.invalid}" required ><br>
+                        <label>Birth date</label>
+                        <input  type="text"class="form-control" name ="birthdate" [(ngModel)]= "artist.birthdate" #birthdate="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && birthdate.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "artistForm.submitted && birthdate.invalid" >
-                        <p *ngIf="birthdate.errors.required">Birthdate required</p>
+                        <p *ngIf="birthdate.errors.required">Birth date required</p>
                         </div>  
                     </div>
 
                     <div class="form-group">
                         <label>Death date</label>
-                        <input  type="date"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" >
+                        <input  type="text"class="form-control" name ="deathDate" [(ngModel)]= "artist.deathDate" #deathDate="ngModel" >
                     </div>
                 
                     <button type="submit" class="btn btn-success">Update</button>
@@ -105,7 +105,7 @@
 </div>
 
 
-<div class="modal" tabindex="-1"  id="myModal">
+<div class="modal" tabindex="-1"  id="added">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

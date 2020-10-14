@@ -1,0 +1,137 @@
+<app-nav-bar></app-nav-bar>
+
+<h1>Add some artists</h1>
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+    <a class="nav-link" routerLink="/newArtist">One artist</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link  active" routerLink="/someArtists">Some artists</a>
+    </li>
+</ul>
+<br>
+<form [formGroup] = "formArtist" (ngSubmit)=" addSomeArtists()">
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="name">Artist name</label>
+            <input type="text" id="name" class="form-control" formControlName="name" [ngClass]="{'is-valid': name.dirty && !name.invalid, 'is-invalid': name.dirty && name.invalid}" placeholder="Artist name">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
+            <div class="invalid-feedback">
+                <span *ngIf="name.errors?.required">Required</span>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="photoUrl">Photo url</label>
+            <input type="text" id="photoUrl" class="form-control" formControlName="photoUrl" [ngClass]="{'is-valid': photoUrl.dirty && !photoUrl.invalid, 'is-invalid': photoUrl.dirty && photoUrl.invalid}" placeholder="Photo Url">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
+            <div class="invalid-feedback">
+                <span *ngIf="photoUrl.errors?.required">Required</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="birthdate">Birth date</label>
+            <input type="date"  id="birthdate" class="form-control" formControlName="birthdate" [ngClass]="{'is-valid': birthdate.dirty && !birthdate.invalid, 'is-invalid': birthdate.touched && birthdate.invalid}" placeholder="Birthdate">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
+            <div class="invalid-feedback">
+                <span *ngIf="birthdate.errors?.required">Required</span>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="deathDate">Death date</label>
+            <input type="date" class="form-control"   placeholder="DeathDate">
+        </div>
+    </div>
+</form>
+<br>
+<hr>
+<br>
+<form [formGroup] = "formArtist1" (ngSubmit)="addSomeArtists()">
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="name">Artist name</label>
+            <input type="text" id="name" class="form-control" formControlName="name" [ngClass]="{'is-valid': name.dirty && !name.invalid, 'is-invalid': name.dirty && name.invalid}" placeholder="Artist name">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
+            <div class="invalid-feedback">
+                <span *ngIf="name.errors?.required">Required</span>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="photoUrl">Photo url</label>
+            <input type="text" id="photoUrl" class="form-control" formControlName="photoUrl" [ngClass]="{'is-valid': photoUrl.dirty && !photoUrl.invalid, 'is-invalid': photoUrl.dirty && photoUrl.invalid}" placeholder="Photo Url">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
+            <div class="invalid-feedback">
+                <span *ngIf="photoUrl.errors?.required">Required</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="birthdate">Birth date</label>
+            <input type="date"  id="birthdate" class="form-control" formControlName="birthdate" [ngClass]="{'is-valid': birthdate.dirty && !birthdate.invalid, 'is-invalid': birthdate.touched && birthdate.invalid}" placeholder="Birthdate">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
+            <div class="invalid-feedback">
+                <span *ngIf="birthdate.errors?.required">Required</span>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-12 mt-2">
+            <label for="deathDate">Death date</label>
+            <input type="date" class="form-control"   placeholder="DeathDate">
+        </div>
+    </div>
+    <div>
+        <div class="button">
+            <button [disabled]="formArtist.invalid && formArtist1.invalid" class="btn btn-success" type="submit" >Save</button>
+        </div>
+    </div>
+</form>
+
+<div class="modal" tabindex="-1"  id="added">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+             <p class="alert-success">Done</p>  
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" [routerLink]="['/artist']">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="modal" tabindex="-1"  id="invalid">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><p>There was an error. The artists were not added. <br>
+            Try again!</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from 'src/app/models/album';
 import { MongoService } from 'src/app/shared/mongo.service';
-import { NgOption } from '@ng-select/ng-select';
 declare var $ : any;
 
 @Component({
@@ -14,17 +13,11 @@ declare var $ : any;
 export class NewAlbumComponent implements OnInit {
   public formAlbum: FormGroup;
   public album:Album;
-  public allArtists:Artist[];
-
-
   public artistsNames: Artist[];
-  public dropdownList: NgOption[];
-  public index : number;
-
-
+  public allAlbums: Album[];
 
   constructor(private mongoService: MongoService, private formBuilder: FormBuilder) {
-
+    this.artistsNames 
     this.formAlbum = this.formBuilder.group({
       title: new FormControl('', Validators.required),
       artistId: new FormControl('', Validators.required),
@@ -32,8 +25,6 @@ export class NewAlbumComponent implements OnInit {
       year:  new FormControl('', Validators.required),
       genre: new FormControl('', Validators.required)
     })
-
-    this.artistsNames 
   }
 
   getArtistsNames(){
@@ -43,17 +34,26 @@ export class NewAlbumComponent implements OnInit {
         this.artistsNames[i]
       }
     })
+  }  
+
+  getAllAlbums(){
+    this.mongoService.getAllAlbums().subscribe((data:Album[]) => {
+     this.allAlbums = data
+    })    
   }
-  
 
   addNewAlbum(){
     let newAlbum = new Album (this.formAlbum.value.title, this.formAlbum.value.artistId, this.formAlbum.value.coverUrl,  this.formAlbum.value.year, this.formAlbum.value.genre)
   
-    this.mongoService.addOneAlbum(newAlbum).subscribe((data:Album) => {})    
+    this.mongoService.addOneAlbum(newAlbum).subscribe((data:Album) => {   
     this.formAlbum.reset()
-    $('#added').modal('show')  
+    $('#added').modal('show')
+    }, error => {
+      this.formAlbum.reset()
+      $('#invalid').modal('show') 
+    })   
   }
-  
+
   get title(){
     return this.formAlbum.get('title')
   }
@@ -72,6 +72,7 @@ export class NewAlbumComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArtistsNames()
+    this.getAllAlbums()
   }
 
 }

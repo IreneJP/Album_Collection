@@ -1,6 +1,6 @@
+import { Artist } from './../../models/artist';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Artist } from 'src/app/models/artist';
 import { MongoService } from 'src/app/shared/mongo.service';
 declare var $ : any;
 
@@ -12,25 +12,29 @@ declare var $ : any;
 export class NewArtistComponent implements OnInit {
   public formArtist: FormGroup;
   public album:Artist
+
   constructor(private mongoService: MongoService, private formBuilder: FormBuilder) {
 
     this.formArtist = this.formBuilder.group({
-      name: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       photoUrl: new FormControl('', Validators.required),
-      birthdate: new FormControl('', Validators.required),
-      deathDate:  new FormControl('', Validators.required),
-      genre: new FormControl('', Validators.required)
+      birthdate: new FormControl('', Validators.required)
     })
   }
 
   addNewArtist(){
     let newArtist = new Artist (this.formArtist.value.name, this.formArtist.value.photoUrl, this.formArtist.value.birthdate,  this.formArtist.value.deathDate)
    
-    this.mongoService.addOneArtist(newArtist).subscribe((data:Artist) => {})    
-    this.formArtist.reset()
-    $('#added').modal('show')  
+    this.mongoService.addOneArtist(newArtist).subscribe((data:Artist) => {
+      this.formArtist.reset()
+    $('#added').modal('show') 
+    }, error => {
+      this.formArtist.reset()
+      $('#invalid').modal('show') 
+    })    
+     
   }
-  
+
   get name(){
     return this.formArtist.get('name')
   }
@@ -43,6 +47,7 @@ export class NewArtistComponent implements OnInit {
   get deathDate(){
     return this.formArtist.get('deathDate')
   }
+  
   ngOnInit(): void {
   }
 

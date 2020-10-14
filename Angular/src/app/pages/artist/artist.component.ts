@@ -27,23 +27,39 @@ export class ArtistComponent implements OnInit {
     })    
   }
 
+  hideAll(): void {
+		//try to hide all active modals
+		var openModals = document.querySelectorAll(".modal.in");
+		if(openModals) {
+			for(let i = 0; i < openModals.length; i++) {
+				//Get the modal-header of the modal
+				var modalHeader = openModals[i].getElementsByClassName("modal-header");
+				if(modalHeader && modalHeader.length > 0) {
+					//Get the close button in the modal header
+					var closeButton : any = modalHeader[0].getElementsByTagName("BUTTON");
+					if(closeButton && closeButton.length > 0) {
+						//simulate click on close button
+						closeButton[0].click();
+					}
+				}
+			}
+		}
+	}
 
   onSubmit(form){
-    this.artist = form.value       
-    this.mongoService.modifyArtist(form.value._id, this.artist).subscribe((data) => {  }) 
-    this.submitted = true;
-    location.reload();
+    this.artist = form.value   
+    this.mongoService.modifyArtist(form.value._id, this.artist).subscribe((data) => { }) 
+    this.hideAll()
   }
 
-  deleteAlbum(artistId:string){
-    this.mongoService.removeAlbum(artistId).subscribe((data:Artist) => {  
-      }) 
-      location.reload();
+  deleteArtist(artistId:string){
+    $('#added').modal('show')
+    this.mongoService.removeArtist(artistId).subscribe((data:Artist) => { 
+      this.getArtists()
+      })
  }
   
   ngOnInit(): void {
     this.getArtists()
-    
   }
-
 }

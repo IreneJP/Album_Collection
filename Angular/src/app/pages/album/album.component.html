@@ -26,7 +26,8 @@
       <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">{{album.title}}</h4>
-        </div><div class="modal-body">
+        </div>
+        <div class="modal-body">
           <div class="row">
               <img class="img-fluid" src="{{album.coverUrl}}" alt="{{album.title}}">
           </div>
@@ -38,7 +39,7 @@
         <div class="modal-footer">
             <div>
                 <button type="button" class="btn btn-info" data-toggle="modal" [attr.data-target]="'#update'+index">Update information</button>
-                <button type="button" class="btn btn-danger" (click) = "deleteAlbum(album._id)">Delete album</button>
+                <button type="button" class="btn btn-danger" (click) = "deleteAlbum(album._id)"  data-dismiss="modal">Delete album</button>
             </div>
              
         </div>
@@ -116,7 +117,7 @@
 </div>
 
 
-<div class="modal" tabindex="-1"  id="myModal">
+<div class="modal" tabindex="-1"  id="added">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

@@ -30,11 +30,29 @@ export class AlbumComponent implements OnInit {
      this.album = data})
   }
 
+  hideAll(): void {
+		//try to hide all active modals
+		var openModals = document.querySelectorAll(".modal.in");
+		if(openModals) {
+			for(let i = 0; i < openModals.length; i++) {
+				//Get the modal-header of the modal
+				var modalHeader = openModals[i].getElementsByClassName("modal-header");
+				if(modalHeader && modalHeader.length > 0) {
+					//Get the close button in the modal header
+					var closeButton : any = modalHeader[0].getElementsByTagName("BUTTON");
+					if(closeButton && closeButton.length > 0) {
+						//simulate click on close button
+						closeButton[0].click();
+					}
+				}
+			}
+		}
+	}
+
   onSubmit(form){
     this.album = form.value       
     this.mongoService.modifyAlbum(form.value._id, this.album).subscribe((data) => {}) 
-    this.submitted = true;
-    location.reload();
+    this.hideAll()
   }
 
   getArtistsNames(){
@@ -47,10 +65,12 @@ export class AlbumComponent implements OnInit {
   }
 
   deleteAlbum(albumId:string){
+    $('#added').modal('show')
     this.mongoService.removeAlbum(albumId).subscribe((data:Album) => {  
+      this.getAlbums()
       }) 
-      location.reload();
  }
+
  
   ngOnInit(): void {
     this.getAlbums()

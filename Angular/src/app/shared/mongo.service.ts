@@ -30,14 +30,12 @@ export class MongoService {
   }
 
   modifyArtist(artistId, artist){
-    console.log((this.url1 + "/" + artistId))
     return this.http.put(this.url1 + "/" + artistId, artist )
   }
 
   removeArtist(artistId:string){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),body:{artistId:artistId}};
-      console.log(artistId)
     return this.http.delete(this.url1 + "/" + artistId, httpOptions)
 }
 
@@ -50,7 +48,6 @@ export class MongoService {
   }
 
   addOneAlbum(album:Album){
-    console.log("album en servicio", album)
     return this.http.post(this.url2 , album)    
   }
 
@@ -59,14 +56,12 @@ export class MongoService {
   }
 
   modifyAlbum(albumId, album){
-    console.log((this.url2 + "/" + albumId))
     return this.http.put(this.url2 + "/" + albumId, album )
   }
 
   removeAlbum(albumId:string){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body:{albumId: albumId} };
-      console.log(albumId, "en servicio")
     return this.http.delete(this.url2 + "/" + albumId, httpOptions)
   }
 }

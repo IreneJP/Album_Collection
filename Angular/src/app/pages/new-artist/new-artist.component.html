@@ -1,22 +1,37 @@
 <app-nav-bar></app-nav-bar>
 <h1>Add new artist</h1>
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+        <a class="nav-link active" routerLink="/newArtist">One artist</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" routerLink="/someArtists">Some artists</a>
+        </li>
+    </ul>
+    <br>
     <form [formGroup] = "formArtist" (ngSubmit)="addNewArtist()">
             <div class="row form-group">
                 <div class="col-12 mt-2">
                     <label for="name">Artist name</label>
                     <input type="text" id="name" class="form-control" formControlName="name" [ngClass]="{'is-valid': name.dirty && !name.invalid, 'is-invalid': name.dirty && name.invalid}" placeholder="Artist name">
-                </div>
-                <div class="invalid-feedback">
-                    <span *ngIf="name.errors?.required">Required</span>
+                    <div class="valid-feedback">
+                        <span>Correct</span>
+                    </div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="name.errors?.required">Required</span>
+                    </div>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 mt-2">
                     <label for="photoUrl">Photo Url</label>
                     <input type="text" id="photoUrl" class="form-control" formControlName="photoUrl" [ngClass]="{'is-valid': photoUrl.dirty && !photoUrl.invalid, 'is-invalid': photoUrl.dirty && photoUrl.invalid}" placeholder="Photo Url">
-                </div>
-                <div class="invalid-feedback">
-                    <span *ngIf="photoUrl.errors?.required">Required</span>
+                    <div class="valid-feedback">
+                        <span>Correct</span>
+                    </div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="photoUrl.errors?.required">Required</span>
+                    </div>
                 </div>
             </div>
             
@@ -24,23 +39,23 @@
                 <div class="col-12 mt-2">
                     <label for="birthdate">Birthdate</label>
                     <input type="date"  id="birthdate" class="form-control" formControlName="birthdate" [ngClass]="{'is-valid': birthdate.dirty && !birthdate.invalid, 'is-invalid': birthdate.touched && birthdate.invalid}" placeholder="Birthdate">
-                </div>
-                <div class="invalid-feedback">
-                    <span *ngIf="birthdate.errors?.required">Required</span>
+                    <div class="valid-feedback">
+                        <span>Correct</span>
+                    </div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="birthdate.errors?.required">Required</span>
+                    </div>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 mt-2">
                     <label for="deathDate">DeathDate</label>
-                    <input type="date" class="form-control" formControlName="deathDate"  placeholder="DeathDate">
-                </div>
-                <div class="invalid-feedback">
-                    <span *ngIf="deathDate.errors?.required">Required</span>
+                    <input type="date" class="form-control"   placeholder="DeathDate">
                 </div>
             </div>
             <div>
                 <div class="button">
-                    <button class="btn btn-success" type="submit" >Save</button>
+                    <button [disabled]="formArtist.invalid" class="btn btn-success" type="submit" >Save</button>
                 </div>
             </div>
     </form>
@@ -49,8 +64,22 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-                   Done
+                 <p>Done</p>  
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" [routerLink]="['/artist']">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    <div class="modal" tabindex="-1"  id="invalid">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header"><p>There was an error. The artist was not added. <br>
+                Try again!</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
