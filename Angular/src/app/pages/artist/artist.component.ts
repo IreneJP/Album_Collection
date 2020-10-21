@@ -1,7 +1,8 @@
 import { Artist } from './../../models/artist';
 import { MongoService } from './../../shared/mongo.service';
 import { Component, OnInit } from '@angular/core';
-declare var $ : any;
+import { Subscription } from 'rxjs';
+declare let $ : any;
 
 @Component({
   selector: 'app-artist',
@@ -11,32 +12,26 @@ declare var $ : any;
 export class ArtistComponent implements OnInit {
    public allArtists: Artist[];
    public artist: Artist;
-   submitted = false;
+   public artistsSubscription: Subscription;
 
   constructor(private mongoService: MongoService) { }
 
-  getArtists(){
-    this.mongoService.getAllArtists().subscribe((data:Artist[])=>{
-      this.allArtists = data
-    })
-  }
-
-  getArtist(artistId){
+  getArtist(artistId:string){
     this.mongoService.getOneArtist(artistId).subscribe((data:Artist)=>{     
-     this.artist = data
+     this.artist = data;
     })    
   }
 
-  hideAll(): void {
+  hideAll(){
 		//try to hide all active modals
-		var openModals = document.querySelectorAll(".modal.in");
+		let openModals = document.querySelectorAll(".modal.in");
 		if(openModals) {
 			for(let i = 0; i < openModals.length; i++) {
 				//Get the modal-header of the modal
-				var modalHeader = openModals[i].getElementsByClassName("modal-header");
+				let modalHeader = openModals[i].getElementsByClassName("modal-header");
 				if(modalHeader && modalHeader.length > 0) {
 					//Get the close button in the modal header
-					var closeButton : any = modalHeader[0].getElementsByTagName("BUTTON");
+					let closeButton : any = modalHeader[0].getElementsByTagName("BUTTON");
 					if(closeButton && closeButton.length > 0) {
 						//simulate click on close button
 						closeButton[0].click();
@@ -49,17 +44,23 @@ export class ArtistComponent implements OnInit {
   onSubmit(form){
     this.artist = form.value   
     this.mongoService.modifyArtist(form.value._id, this.artist).subscribe((data) => { }) 
-    this.hideAll()
+    this.hideAll();
   }
 
   deleteArtist(artistId:string){
     $('#added').modal('show')
     this.mongoService.removeArtist(artistId).subscribe((data:Artist) => { 
-      this.getArtists()
+      this.ngOnInit();
       })
  }
   
-  ngOnInit(): void {
-    this.getArtists()
+ ngOnInit(): void{
+    this.artistsSubscription =  this.mongoService.getAllArtists().subscribe((data:Artist[])=>{
+      this.allArtists = data;
+    })
+  }
+
+  ngOnDestroy(): void{
+    this.artistsSubscription.unsubscribe(); 
   }
 }

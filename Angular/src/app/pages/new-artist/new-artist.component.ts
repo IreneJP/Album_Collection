@@ -2,7 +2,7 @@ import { Artist } from './../../models/artist';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MongoService } from 'src/app/shared/mongo.service';
-declare var $ : any;
+declare let $ : any;
 
 @Component({
   selector: 'app-new-artist',
@@ -11,14 +11,14 @@ declare var $ : any;
 })
 export class NewArtistComponent implements OnInit {
   public formArtist: FormGroup;
-  public album:Artist
 
   constructor(private mongoService: MongoService, private formBuilder: FormBuilder) {
 
     this.formArtist = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       photoUrl: new FormControl('', Validators.required),
-      birthdate: new FormControl('', Validators.required)
+      birthdate: new FormControl('', Validators.required),
+      deathDate: new FormControl('')
     })
   }
 
@@ -36,16 +36,16 @@ export class NewArtistComponent implements OnInit {
   }
 
   get name(){
-    return this.formArtist.get('name')
+    return this.formArtist.get('name');
   }
   get photoUrl(){
-    return this.formArtist.get('photoUrl')
+    return this.formArtist.get('photoUrl');
   }
   get birthdate(){
-    return this.formArtist.get('birthdate')
+    return this.formArtist.get('birthdate');
   }
   get deathDate(){
-    return this.formArtist.get('deathDate')
+    return this.formArtist.get('deathDate');
   }
   
   ngOnInit(): void {

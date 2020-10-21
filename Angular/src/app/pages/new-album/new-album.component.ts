@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from 'src/app/models/album';
 import { MongoService } from 'src/app/shared/mongo.service';
-declare var $ : any;
+import { Subscription } from 'rxjs/internal/Subscription';
+declare let $ : any;
 
 @Component({
   selector: 'app-new-album',
@@ -12,9 +13,8 @@ declare var $ : any;
 })
 export class NewAlbumComponent implements OnInit {
   public formAlbum: FormGroup;
-  public album:Album;
   public artistsNames: Artist[];
-  public allAlbums: Album[];
+  public artistsNamesSubscription: Subscription;
 
   constructor(private mongoService: MongoService, private formBuilder: FormBuilder) {
     this.artistsNames 
@@ -25,21 +25,6 @@ export class NewAlbumComponent implements OnInit {
       year:  new FormControl('', Validators.required),
       genre: new FormControl('', Validators.required)
     })
-  }
-
-  getArtistsNames(){
-    this.mongoService.getAllArtists().subscribe((data:Artist[]) =>{
-      this.artistsNames = data
-      for(let i=0; i<this.artistsNames.length; i++){
-        this.artistsNames[i]
-      }
-    })
-  }  
-
-  getAllAlbums(){
-    this.mongoService.getAllAlbums().subscribe((data:Album[]) => {
-     this.allAlbums = data
-    })    
   }
 
   addNewAlbum(){
@@ -70,9 +55,17 @@ export class NewAlbumComponent implements OnInit {
     return this.formAlbum.get('year')
   }
 
-  ngOnInit(): void {
-    this.getArtistsNames()
-    this.getAllAlbums()
+  ngOnInit(): void{
+    this.artistsNamesSubscription = this.mongoService.getAllArtists().subscribe((data:Artist[]) =>{
+      this.artistsNames = data;
+      for(let i=0; i<this.artistsNames.length; i++){
+        this.artistsNames[i];
+      }
+    })
+  }
+
+  ngOnDestroy(): void{
+    this.artistsNamesSubscription.unsubscribe();
   }
 
 }

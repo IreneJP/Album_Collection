@@ -34,3 +34,20 @@
 .addNew {
     border: solid 1px;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .allAlbum{
+        display: grid;
+        grid-template-columns: 30% 30% 30% ;
+        grid-gap: 5%;
+    }
+
+    .allAlbum p {
+        font-size: 1.5vw;
+    }
+
+    .album{
+        margin-bottom: 0 !important;
+    }
+}

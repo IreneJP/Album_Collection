@@ -8,6 +8,18 @@ h1{
     font-size: 4.5vw;
 }
 
+h2{
+    text-align: center;
+    padding-bottom: 5%;
+    font-size: 3.5vw;
+}
+
+h3{
+    padding-top: 5%;
+    text-align: center;
+    font-size: 2.5vw;
+}
+
 #added{
     color:rgba(26, 97, 26, 0.796);
     font-weight: bold;
@@ -43,3 +55,41 @@ h1, h2, h3, h4, li, label, button{
 hr{
     width: 80%;
 }
+
+@media only screen and (max-width: 771px) {
+    .modal {
+        margin: auto auto auto auto;
+        width: 70%;
+        align-items: center;
+    }
+
+    button{
+        width:auto;
+    }
+
+    h1, .close{
+        font-size: 3.8vw;
+    }
+
+    h4, .modal-body{
+        font-size: 2.8vw;
+    }
+
+    li, .btn, label, .form-control, .dropdown {
+        font-size: 2vw;
+    }
+
+    .form-group{
+        margin-bottom: 5%;
+        width: auto;
+    }
+
+    .form-group ng-select{
+        height: 50%;
+        margin-bottom: 5%;
+    }
+
+
+  }
+
+

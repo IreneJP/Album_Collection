@@ -1,14 +1,14 @@
 form{
-    width: 100%;
+    width: 60%;
+    margin: auto auto auto auto;
 }
-.row{
-    margin: auto 25% auto 25%;
-  }
-
 button{
-    margin: 2% auto auto 71%;
+    margin-top: 5%;
+    float: right;
 }
 
 body{
     padding-bottom: 5%;
+    width: 90%;
+    margin: auto auto auto auto;
 }

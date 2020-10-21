@@ -36,3 +36,19 @@
     padding-top: 25%;
     border: solid 1px;
 }
+
+@media only screen and (max-width: 600px) {
+    .allArtist{
+        display: grid;
+        grid-template-columns: 30% 30% 30% ;
+        grid-gap: 5%;
+    }
+
+    .allArtist p {
+        font-size: 1.5vw;
+    }
+
+    .artist{
+        margin-bottom: 0;
+    }
+}

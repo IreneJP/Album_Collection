@@ -17,6 +17,9 @@
         <div class="col-12 mt-2">
             <label for="title">Album title</label>
             <input type="text" id="title" class="form-control" formControlName="title" [ngClass]="{'is-valid': title.dirty && !title.invalid, 'is-invalid': title.touched && title.invalid}" placeholder="Album title">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
                 <span *ngIf="title.errors?.required">Required</span>
             </div>
@@ -27,6 +30,9 @@
             <label for="artistId">Artist</label>
             <ng-select  class ="dropdown" [items]="artistsNames" bindLabel="name" bindValue="_id" formControlName="artistId" [ngClass]="{'is-valid': artistId.dirty && !artistId.invalid, 'is-invalid': artistId.touched && artistId.invalid}"  placeholder="Artist">                    
             </ng-select>
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
                 <span *ngIf="artistId.errors?.required">Required</span>
             </div>
@@ -36,6 +42,9 @@
         <div class="col-12 mt-2">
             <label for="coverUrl">Cover Url</label>
             <input type="text" id="coverUrl" class="form-control" formControlName="coverUrl" [ngClass]="{'is-valid': coverUrl.dirty && !coverUrl.invalid, 'is-invalid': coverUrl.touched && coverUrl.invalid}" placeholder="cover Url">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
                 <span *ngIf="coverUrl.errors?.required">Required</span>
             </div>
@@ -46,6 +55,9 @@
         <div class="col-12 mt-2">
             <label for="year">Year</label>
             <input type="number"  id="year" class="form-control" formControlName="year" [ngClass]="{'is-valid': year.dirty && !year.invalid, 'is-invalid': year.touched && year.invalid}" placeholder="Year">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
                 <span *ngIf="year.errors?.required">Required</span>
             </div>
@@ -55,6 +67,9 @@
         <div class="col-12 mt-2">
             <label for="genre">Genre</label>
             <input type="text" class="form-control" formControlName="genre" [ngClass]="{'is-valid': genre.dirty && !genre.invalid, 'is-invalid': genre.touched && genre.invalid}" placeholder="Genre">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
                 <span *ngIf="genre.errors?.required">Required</span>
             </div>
@@ -67,54 +82,69 @@
 <form [formGroup] = "formAlbum1" (ngSubmit)=" addSomeAlbums()">
     <div class="row form-group">
         <div class="col-12 mt-2">
-            <label for="title">Album title</label>
-            <input type="text" id="title" class="form-control" formControlName="title" [ngClass]="{'is-valid': title.dirty && !title.invalid, 'is-invalid': title.touched && title.invalid}" placeholder="Album title">
+            <label for="title1">Album title</label>
+            <input type="text" id="title1" class="form-control" formControlName="title1" [ngClass]="{'is-valid': title1.dirty && !title1.invalid, 'is-invalid': title1.touched && title1.invalid}" placeholder="Album title">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
-                <span *ngIf="title.errors?.required">Required</span>
+                <span *ngIf="title1.errors?.required">Required</span>
             </div>
         </div>
     </div>
     <div class="row form-group">
         <div class="col-12 mt-2">
-            <label for="artistId">Artist</label>
-            <ng-select  class ="dropdown" [items]="artistsNames" bindLabel="name" bindValue="_id" formControlName="artistId" [ngClass]="{'is-valid': artistId.dirty && !artistId.invalid, 'is-invalid': artistId.touched && artistId.invalid}"  placeholder="Artist">                    
+            <label for="artistId1">Artist</label>
+            <ng-select  class ="dropdown" [items]="artistsNames" bindLabel="name" bindValue="_id" formControlName="artistId1" [ngClass]="{'is-valid': artistId1.dirty && !artistId1.invalid, 'is-invalid': artistId1.touched && artistId1.invalid}"  placeholder="Artist">                    
             </ng-select>
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
-                <span *ngIf="artistId.errors?.required">Required</span>
+                <span *ngIf="artistId1.errors?.required">Required</span>
             </div>
         </div>
     </div>
     <div class="row form-group">
         <div class="col-12 mt-2">
-            <label for="coverUrl">Cover Url</label>
-            <input type="text" id="coverUrl" class="form-control" formControlName="coverUrl" [ngClass]="{'is-valid': coverUrl.dirty && !coverUrl.invalid, 'is-invalid': coverUrl.touched && coverUrl.invalid}" placeholder="cover Url">
+            <label for="coverUrl1">Cover Url</label>
+            <input type="text" id="coverUrl1" class="form-control" formControlName="coverUrl1" [ngClass]="{'is-valid': coverUrl1.dirty && !coverUrl1.invalid, 'is-invalid': coverUrl1.touched && coverUrl1.invalid}" placeholder="cover Url">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
-                <span *ngIf="coverUrl.errors?.required">Required</span>
+                <span *ngIf="coverUrl1.errors?.required">Required</span>
             </div>
         </div>
     </div>
     
     <div class="row form-group">
         <div class="col-12 mt-2">
-            <label for="year">Year</label>
-            <input type="number"  id="year" class="form-control" formControlName="year" [ngClass]="{'is-valid': year.dirty && !year.invalid, 'is-invalid': year.touched && year.invalid}" placeholder="Year">
+            <label for="year1">Year</label>
+            <input type="number"  id="year1" class="form-control" formControlName="year1" [ngClass]="{'is-valid': year1.dirty && !year1.invalid, 'is-invalid': year1.touched && year1.invalid}" placeholder="Year">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
-                <span *ngIf="year.errors?.required">Required</span>
+                <span *ngIf="year1.errors?.required">Required</span>
             </div>
         </div>
     </div>
     <div class="row form-group">
         <div class="col-12 mt-2">
-            <label for="genre">Genre</label>
-            <input type="text" class="form-control" formControlName="genre" [ngClass]="{'is-valid': genre.dirty && !genre.invalid, 'is-invalid': genre.touched && genre.invalid}" placeholder="Genre">
+            <label for="genre1">Genre</label>
+            <input type="text" class="form-control" formControlName="genre1" [ngClass]="{'is-valid': genre1.dirty && !genre1.invalid, 'is-invalid': genre1.touched && genre1.invalid}" placeholder="Genre">
+            <div class="valid-feedback">
+                <span>Correct</span>
+            </div>
             <div class="invalid-feedback">
-                <span *ngIf="genre.errors?.required">Required</span>
+                <span *ngIf="genre1.errors?.required">Required</span>
             </div>
         </div>
     </div>
     <div>
         <div class="button">
-            <button [disabled]="formAlbum.invalid && formAlbum1.invalid" class="btn btn-success" type="submit" >Save</button>
+            <button [disabled]="formAlbum1.invalid" class="btn btn-success" type="submit" >Save</button>
         </div>
     </div>
 </form>
@@ -123,7 +153,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-               Done
+               <p>Done</p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" [routerLink]="['/album']">
             <span aria-hidden="true">&times;</span>
           </button>

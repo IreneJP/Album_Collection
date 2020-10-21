@@ -36,9 +36,8 @@
         <div class="modal-footer">
             <div>
               <button type="button" class="btn btn-info" data-toggle="modal" [attr.data-target]="'#update'+index">Update information</button>
-              <button type="button" class="btn btn-danger" (click) = "deleteArtist(artist._id)" data-dismiss="modal">Delete artist</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" [attr.data-target]="'#delete'+index">Delete artist</button>
           </div>
-             
         </div>
       </div>        
     </div>
@@ -61,7 +60,7 @@
                 <form #artistForm="ngForm" (ngSubmit)="onSubmit(artistForm)" >
                     <div class="form-group">
                         <label>Artist id</label>
-                        <input   type="text "class="form-control" name ="_id" [(ngModel)]= "artist._id" #_id="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && _id.invalid}" required ><br>
+                        <input   type="text" class="form-control" name ="_id" [(ngModel)]= "artist._id" #_id="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && _id.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "artistForm.submitted && _id.invalid" >
                             <p *ngIf="_id.errors.required">Id required</p>
                         </div>  
@@ -69,7 +68,7 @@
 
                     <div class="form-group">
                     <label>Artist name</label>
-                    <input  type="text "class="form-control" name ="name" [(ngModel)]= "artist.name" #name="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && name.invalid}" required ><br>
+                    <input  type="text" class="form-control" name ="name" [(ngModel)]= "artist.name" #name="ngModel" [ngClass]= "{'is-invalid':artistForm.submitted && name.invalid}" required ><br>
                         <div  class="invalid-feedback" *ngIf= "artistForm.submitted && name.invalid" >
                             <p *ngIf="name.errors.required">Name required</p>
                         </div>  
@@ -104,7 +103,28 @@
     </div>
 </div>
 
+ <!--delete-->
+ <div class="container"  *ngFor="let artist of allArtists; let index=index">
+  <div class="modal fade" [attr.id]="'delete'+index" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete artist</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+          <div class="modal-body">
+            <p> Are you sure you want to delete the artist "{{artist.name}}"?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" (click) = "deleteArtist(artist._id)" data-dismiss="modal">Delete</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+ <!--done-->
 <div class="modal" tabindex="-1"  id="added">
     <div class="modal-dialog">
       <div class="modal-content">
